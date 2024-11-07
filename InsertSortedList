@@ -1,0 +1,30 @@
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def insertionSortList(self, head):
+        # Initialize a dummy node for the start of the sorted list
+        dummy = ListNode(0)
+        current = head
+        
+        # Iterate over the original list
+        while current:
+            # At each iteration, `prev` will traverse the sorted part of the list
+            prev = dummy
+            # Find the right place to insert current node
+            while prev.next and prev.next.val < current.val:
+                prev = prev.next
+            
+            # Temporarily store the next node
+            next_node = current.next
+            
+            # Insert current node in the sorted list
+            current.next = prev.next
+            prev.next = current
+            
+            # Move to the next node in the original list
+            current = next_node
+        
+        return dummy.next
