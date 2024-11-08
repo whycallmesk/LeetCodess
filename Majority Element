@@ -1,0 +1,13 @@
+class Solution:
+    def majorityElement(self, nums):
+        candidate = None
+        count = 0
+        
+        # First pass: find a candidate for the majority element
+        for num in nums:
+            if count == 0:
+                candidate = num
+            count += (1 if num == candidate else -1)
+        
+        # The majority element is guaranteed to exist, so we return the candidate
+        return candidate
